@@ -1,0 +1,457 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'animate.css';
+
+@layer base {
+  body {
+    @apply dark:bg-gray-800 bg-white;
+  }
+}
+
+/* Target the whole scrollbar */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+  color: #fec94286;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+/* Scrollbar thumb hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+.card-body {
+  min-height: calc(75vh - 105px);
+}
+
+.login-body {
+  height: calc(100vh - 105px);
+}
+
+.c-card img {
+  z-index: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.c-card:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes carouselAnim {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(calc(-100% + (6 * 300px)));
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container .carousel-items {
+    animation: carouselAnim 60s infinite alternate linear;
+  }
+  @keyframes carouselAnim {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(calc(-100% + (5 * 300px)));
+    }
+  }
+}
+
+.carousel-focus:hover {
+  transition: all 0.8s;
+  transform: scale(1.1);
+}
+
+.ribbon-2 {
+  position: absolute;
+  top: 10;
+  inset: var(--t) calc(-1 * var(--f)) auto auto;
+  padding: 0 10px var(--f) calc(10px + var(--r));
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--f)),
+    calc(100% - var(--f)) 100%,
+    calc(100% - var(--f)) calc(100% - var(--f)),
+    0 calc(100% - var(--f)),
+    var(--r) calc(50% - var(--f) / 2)
+  );
+  background: #bd1550 !important;
+  box-shadow: 0 calc(-1 * var(--f)) 0 inset #0005;
+}
+
+.block-ellipsis-1 {
+  display: flex;
+  place-items: center;
+  max-width: 100%;
+  height: 36px;
+  line-height: 17px;
+  margin: 0 auto;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.block-ellipsis-2 {
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 29px;
+  margin: 0 auto;
+  line-height: 1;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+[type='radio'] {
+  display: none;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 800ms forwards;
+}
+
+.animate-slide-out {
+  animation: slide-out 800ms forwards;
+}
+
+.scroll-images {
+  overflow-y: scroll;
+  display: flex;
+  gap: 10px;
+}
+.scroll-images::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes quantityChange {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-quantity-change {
+  animation: quantityChange 300ms;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 15%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.arrow span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.85);
+  border-right: 5px solid rgba(0, 0, 0, 0.85);
+  transform: rotate(45deg);
+  margin: -20px;
+  animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(-45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-45deg) translate(20px, 20px);
+  }
+}
+
+@keyframes backOutDown {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  20% {
+    transform: translateY(0px) scale(0.7);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(700px) scale(0.7);
+    opacity: 0.7;
+  }
+}
+
+.backOutDown {
+  -webkit-animation: backOutDown 1.5s;
+  animation: backOutDown 1.5s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+
+.button-variant {
+  position: relative;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.button-variant:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 40px #e2e2e2;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.button-variant:active:after {
+  box-shadow: 0 0 0 0 #e2e2e2;
+  opacity: 1;
+  transition: 0s;
+}
+
+.button-variant:active {
+  top: 1px;
+}
+
+.button {
+  position: relative;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.button:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 40px #feca42;
+}
+
+.button:active:after {
+  box-shadow: 0 0 0 0 #feca42;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.button:active {
+  top: 1px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(174, 173, 173, 0.536); /* Semi-transparent black */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+  z-index: 40; /* Position behind the modal content */
+}
+
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.wrap {
+  position: fixed;
+  /* overflow: auto; */
+  width: 100%;
+  top: 0%;
+  bottom: 0px;
+  left: 0px;
+  /* padding: 20px 50px; */
+  display: block;
+  transform: translateY(20px);
+  transition: all 0.5s;
+  visibility: hidden;
+}
+.wrap .content {
+  opacity: 0;
+}
+.wrap:before {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+  content: '';
+  bottom: 10px;
+  left: 50%;
+  top: 95%;
+  color: #fff;
+  border-radius: 50%;
+  -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.wrap.active {
+  background-color: white;
+  display: block;
+  visibility: visible;
+  box-shadow: 2px 3px 16px silver;
+  transition: all 600ms;
+  transform: translateY(0px);
+  transition: all 0.5s;
+}
+.wrap.active:before {
+  height: 2000px;
+  width: 2000px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -1000px;
+  margin-top: -1000px;
+  display: block;
+  -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.wrap.active .content {
+  position: relative;
+  opacity: 1;
+  transition: all 600ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hg-theme-default {
+  background-color: #f6f7f8 !important;
+  padding: 17px !important;
+  border-radius: 15px !important;
+}
+
+.cart-totals {
+  margin: 0px;
+}
+
+.cart-totals-inner {
+  padding: 24px;
+  display: d-block;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+:root {
+  --gray: white;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.bg-lightgrey {
+  background: var(--gray);
+}
+
+.cart-totals:after {
+  content: '';
+  display: block;
+  height: 14px;
+  width: 100%;
+  background-color: transparent;
+  -webkit-background-size: 20px 20px;
+  background-size: 20px 20px;
+  background-position: 0 10px, 40px 40px;
+  background-image: radial-gradient(closest-side, transparent 9px, var(--gray) 100%);
+}
+
+.cart-totals:after {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  margin-bottom: -10px;
+}
+
+.cart-totals:before {
+  margin-top: -10px;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader-screen-saver {
+  /* width: 100%; */
+  border-radius: 10px;
+  background: repeating-linear-gradient(135deg, #feca42 0 10px, #feca42 0 20px) 0/0% no-repeat,
+    repeating-linear-gradient(135deg, #e5e7eb 0 10px, #e5e7eb 0 20px) 0/100%;
+  animation: l3 30s infinite;
+  color: white !important;
+}
+@keyframes l3 {
+  100% {
+    background-size: 100%;
+  }
+}
