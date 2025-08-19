@@ -166,12 +166,12 @@ const CanteenModal = ({ noPrint, payment, visibleCanteen, ordered, onClose }: Pr
   const newOrder = () => {
     play();
 
-    let parentId = localStorage.getItem('parentId');
+    let paramUrl = localStorage.getItem('paramUrl');
 
-    if (isEmpty(parentId)) {
+    if (isEmpty(paramUrl)) {
       router.push(`/kiosk?id=${participant.id}`);
     } else {
-      router.push(`/parent?id=${parentId}`);
+      router.push(`/kiosk?${paramUrl}`);
     }
   };
 

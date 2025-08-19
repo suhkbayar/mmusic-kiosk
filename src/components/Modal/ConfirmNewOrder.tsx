@@ -3,13 +3,13 @@ import { Modal } from 'flowbite-react';
 import { useTranslation } from 'react-i18next';
 import { customThemePaymentModal } from '../../../styles/themes';
 import { TfiClose } from 'react-icons/tfi';
-import { IoInformationCircleOutline } from 'react-icons/io5';
 import { useCallStore } from '../../contexts/call.store';
 import useSound from 'use-sound';
 import { SOUND_LINK } from '../../constants/constant';
 import router from 'next/router';
 import { emptyOrder } from '../../mock';
 import { CiWarning } from 'react-icons/ci';
+import { isEmpty } from 'lodash';
 
 type Props = {
   visible: boolean;
@@ -25,7 +25,15 @@ const Index = ({ visible, onClose }: Props) => {
 
   const newOrder = () => {
     play();
-    router.push(`/kiosk?id=${participant.id}`);
+
+    let paramUrl = localStorage.getItem('paramUrl');
+
+    if (isEmpty(paramUrl)) {
+      router.push(`/kiosk?id=${participant.id}`);
+    } else {
+      router.push(`/kiosk?${paramUrl}`);
+    }
+
     load(emptyOrder);
   };
 

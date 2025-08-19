@@ -130,10 +130,10 @@ const AnimatedBackground: React.FC<Props> = ({ isWhite = false }) => {
               </>
             ) : (
               <>
-                <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(254,202,66,0.7)" />
-                <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(254,202,66,0.5)" />
-                <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(254,202,66,0.3)" />
-                <use xlinkHref="#gentle-wave" x="48" y="7" fill="rgba(254,202,66)" />
+                <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(0, 40, 145,0.7)" />
+                <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(0, 40, 145,0.5)" />
+                <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(0, 40, 145,0.3)" />
+                <use xlinkHref="#gentle-wave" x="48" y="7" fill="rgba(0, 40, 145)" />
               </>
             )}
           </g>

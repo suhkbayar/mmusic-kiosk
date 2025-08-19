@@ -9,9 +9,9 @@ import { AuthContext, getPayload } from '../../providers/auth';
 
 const Kiosk = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { univision_id, mac_address, serial_number } = router.query;
 
-  const { authenticate, changeQr } = useContext(AuthContext);
+  const { authenticate } = useContext(AuthContext);
   const { load } = useCallStore();
 
   const [getCurrentToken, { loading }] = useMutation(CURRENT_TOKEN, {
@@ -19,6 +19,8 @@ const Kiosk = () => {
       load(emptyOrder);
       authenticate(data.getToken.token, () => router.push(`/restaurant?id=${data.getToken.id}`));
       getPayload();
+      let url = `univision_id=${univision_id}&mac_address=${mac_address}&serial_number=${serial_number}`;
+      localStorage.setItem('paramUrl', url);
     },
     onError(err) {
       router.push('/notfound');
@@ -26,12 +28,11 @@ const Kiosk = () => {
   });
 
   React.useEffect(() => {
-    if (id) {
-      console.log(id);
-      changeQr(id.toString());
-      getCurrentToken({ variables: { code: id, type: 'K' } });
+    if (univision_id && mac_address && serial_number) {
+      const code = `${univision_id}|${mac_address}|${serial_number}`;
+      getCurrentToken({ variables: { code, type: 'MM' } });
     }
-  }, [id]);
+  }, [univision_id, mac_address, serial_number]);
 
   if (loading) return <Loader />;
 

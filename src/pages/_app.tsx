@@ -60,7 +60,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const newOrder = () => {
     if (participant) {
-      router.push(`/kiosk?id=${participant?.id}`); // Ensure `participant` is defined
+      let paramUrl = localStorage.getItem('paramUrl');
+
+      if (isEmpty(paramUrl)) {
+        router.push(`/kiosk?id=${participant.id}`);
+      } else {
+        router.push(`/kiosk?${paramUrl}`);
+      }
       load(emptyOrder); // Ensure `load` exists
     } else {
       const qr = localStorage.getItem('qr');

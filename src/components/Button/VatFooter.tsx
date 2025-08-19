@@ -71,7 +71,14 @@ const VatFooter = ({ id, vatType, buyer, buyerRegister }: Props) => {
   }, []);
 
   const newOrder = () => {
-    router.push(`/kiosk?id=${participant.id}`);
+    let paramUrl = localStorage.getItem('paramUrl');
+
+    if (isEmpty(paramUrl)) {
+      router.push(`/kiosk?id=${participant.id}`);
+    } else {
+      router.push(`/kiosk?${paramUrl}`);
+    }
+
     load(emptyOrder);
   };
 

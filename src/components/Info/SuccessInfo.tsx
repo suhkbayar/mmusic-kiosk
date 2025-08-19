@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import useSound from 'use-sound';
 import { SOUND_LINK } from '../../constants/constant';
 import { emptyOrder } from '../../mock';
+import { isEmpty } from 'lodash';
 
 type SuccessInfoProps = {
   number: string;
@@ -22,12 +23,18 @@ const Index = ({ number }: SuccessInfoProps) => {
 
   const newOrder = () => {
     play();
-    router.push(`/kiosk?id=${participant.id}`);
+    let paramUrl = localStorage.getItem('paramUrl');
+
+    if (isEmpty(paramUrl)) {
+      router.push(`/kiosk?id=${participant.id}`);
+    } else {
+      router.push(`/kiosk?${paramUrl}`);
+    }
     load(emptyOrder);
   };
 
   return (
-    <div className={`h-screen bg-[rgba(254,202,66,0.3)]  `}>
+    <div className={`h-screen bg-[#658DF5]  `}>
       <div className="absolute top-0 w-full p-8">{participant && <ModalHeader />}</div>
       <div className="h-full items-center place-content-center grid gap-10 pb-[20rem]">
         <div className="grid items-center place-content-center justify-items-center">

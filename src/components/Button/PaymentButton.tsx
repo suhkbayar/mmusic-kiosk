@@ -23,11 +23,12 @@ const Index = ({ loading, grandTotal, paymentType, showCashier }: Props) => {
   const { participant } = useCallStore();
 
   const onNewOrder = () => {
-    let parentId = localStorage.getItem('parentId');
-    if (isEmpty(parentId)) {
+    let paramUrl = localStorage.getItem('paramUrl');
+
+    if (isEmpty(paramUrl)) {
       router.push(`/kiosk?id=${participant.id}`);
     } else {
-      router.push(`/parent?id=${parentId}`);
+      router.push(`/kiosk?${paramUrl}`);
     }
   };
 

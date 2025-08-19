@@ -10,8 +10,8 @@ import { useRouter } from 'next/router';
 import DraftOrderModal from '../Modal/DraftOrderModal';
 import { emptyOrder } from '../../mock';
 import { OrderProcessingScreensaver } from '..';
-
 import { isEmpty } from 'lodash';
+import MkaraokeButton from './MkaraokeButton';
 
 const OrderFooter = () => {
   const router = useRouter();
@@ -38,12 +38,12 @@ const OrderFooter = () => {
   const newOrder = () => {
     play();
 
-    let parentId = localStorage.getItem('parentId');
+    let paramUrl = localStorage.getItem('paramUrl');
 
-    if (isEmpty(parentId)) {
+    if (isEmpty(paramUrl)) {
       router.push(`/kiosk?id=${participant.id}`);
     } else {
-      router.push(`/parent?id=${parentId}`);
+      router.push(`/kiosk?${paramUrl}`);
     }
 
     load(emptyOrder);
@@ -83,7 +83,7 @@ const OrderFooter = () => {
         <div className="fixed bottom-0 w-full p-12 bg-white border border-gray-100 shadow-lg animate__animated">
           <div className="  ml-[10rem]">
             <div className="flex justify-start">
-              <OrderProcessingScreensaver onClick={newOrder} startInterVal={30000} />
+              <OrderProcessingScreensaver onClick={newOrder} startInterVal={30000000000} />
             </div>
             <div className="mr-[10rem]">
               <CanteenModal
@@ -97,7 +97,7 @@ const OrderFooter = () => {
           </div>
         </div>
       )}
-
+      <MkaraokeButton />
       <DraftOrderModal visible={visible} onClose={() => setVisible(false)} />
     </>
   );

@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import Loader from '../../../components/Loader/Loader';
 import { OrderProcessingScreensaver } from '../../../components';
-
+import { isEmpty } from 'lodash';
 const Index = () => {
   const { t } = useTranslation('language');
   const router = useRouter();
@@ -35,7 +35,14 @@ const Index = () => {
 
   const newOrder = () => {
     play();
-    router.push(`/kiosk?id=${participant.id}`);
+
+    let paramUrl = localStorage.getItem('paramUrl');
+
+    if (isEmpty(paramUrl)) {
+      router.push(`/kiosk?id=${participant.id}`);
+    } else {
+      router.push(`/kiosk?${paramUrl}`);
+    }
     load(emptyOrder);
   };
 
@@ -50,7 +57,7 @@ const Index = () => {
   }
 
   return (
-    <div className={`h-screen bg-[rgba(254,202,66,0.3)] ${loading ? 'opacity-20' : ''} `}>
+    <div className={`h-screen bg-[#658DF5] ${loading ? 'opacity-20' : ''} `}>
       <div className="absolute top-0 w-full p-8">{participant && <ModalHeader />}</div>
       <div className="h-full items-center place-content-center grid gap-10 pb-[20rem]">
         <div className="grid items-center place-content-center justify-items-center">

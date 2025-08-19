@@ -71,8 +71,8 @@ const ToggleLanguage = () => {
         src={
           Languages.find((item) => i18n.language.includes(item.name.toLowerCase())).icon.src ?? Languages[0].icon.src
         }
-        height={16}
-        width={34}
+        height={22}
+        width={52}
         onClick={() => setIsShow(!isShow)}
       />
       {isShow && (

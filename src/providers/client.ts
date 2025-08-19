@@ -7,6 +7,8 @@ import { RetryLink } from '@apollo/client/link/retry';
 
 const url = `https://graph.qmenu.mn/graphql`;
 
+// const url = 'https://iphdknedhzgrrdmxc5tvh6zmq4.appsync-api.ap-east-1.amazonaws.com/graphql';
+
 const region = `ap-east-1`;
 
 const auth: AuthOptions = {

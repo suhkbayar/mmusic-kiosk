@@ -34,14 +34,13 @@ const OrderProcessingScreensaver = ({ startInterVal, onClick, isSolid = false }:
   };
 
   const newOrder = () => {
-    let parentId = localStorage.getItem('parentId');
-    if (isEmpty(parentId)) {
+    let paramUrl = localStorage.getItem('paramUrl');
+    if (isEmpty(paramUrl)) {
       router.push(`/kiosk?id=${participant.id}`);
-      load(emptyOrder);
     } else {
-      router.push(`/parent?id=${parentId}`);
-      load(emptyOrder);
+      router.push(`/kiosk?${paramUrl}`);
     }
+    load(emptyOrder);
   };
 
   useEffect(() => {
